@@ -12,7 +12,7 @@ def index():
     status_sources = get_sources('status')
     print(status_sources)
     title='Home - Get the most up to date news on News One'
-    return render_template('index.html', title = title, status=status_sources)
+    return render_template('index.html', title = title, status = status_sources)
 
 @app.route('/news/<news_id>')
 def news(news_id):

@@ -26,8 +26,8 @@ def get_sources(category):
 
         sources_results= None
 
-        if get_sources_response['status']:
-            sources_results_list = get_sources_response['status']
+        if get_sources_response['sources']:
+            sources_results_list = get_sources_response['sources']
             sources_results = process_results(sources_results_list)
 
     return sources_results
@@ -45,7 +45,7 @@ def process_results(sources_list):
 
     sources_results = []
 
-    for sources_item in sources_results:
+    for sources_item in sources_list:
         id = sources_item.get('id')
         name = sources_item.get('name')
         description = sources_item.get('description')
