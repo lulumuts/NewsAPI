@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}
+
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -8,13 +11,22 @@
     <title> Get the most up to date news on News One </title>
     {% endif %}
   </head>
-  <body>
+  <body> -->
+
+
+  <!-- Content block -->
+  {%block content %}
     <!-- Popular movie section -->
     <h3> All Sources</h3>
-    <ul>
+
+    <p>
       {% for status_sources in status %}
-        <li>{{status_sources.name}}</li>
+      {{status_sources.name}}
+      <ul>
+        <li>{{status_sources.description}}</li>
+        <li>{{status_sources.url}}</li>
+      </ul>
       {% endfor %}
-    </ul>
-  </body>
-</html>
+
+    </p>
+  {% endblock %}
