@@ -71,25 +71,38 @@ def get_articles(category):
         get_articles_data = url.read()
         get_articles_response = json.loads(get_articles_data)
 
-
-
         articles_results = None
-
-
 
         if get_articles_response['articles']:
             articles_results_list = get_articles_response['articles']
-            articles_results = process_results(articles_results_list)
+            articles_results = process_articles(articles_results_list)
 
         return articles_results
 
-        #     author = get_articles_response.get('author')
-        #     title = get_articles_response.get('title')
-        #     description = get_articles_response.get('description')
-        #     url = get_articles_response.get('url')
-        #     urlToImage = get_articles_response.get('urlToImage')
-        #     publishedAt= get_articles_response.get('publishedAt')
-        #
-        #     articles_object = Article(author,title,description,url,urlToImage,publishedAt)
-        #
-        # return articles_object
+def process_articles(articles_list):
+    '''
+    Function that processes the articles results and transofrms them to a list of Objects
+
+    Args:
+        articles_list: A list of dictionaries that contain articles details
+
+    Returns :
+        articles_list: A list of articles objects
+    '''
+
+    articles_results = []
+    for articles_item in articles_list:
+
+        author = get_articles_response.get('author')
+        title = get_articles_response.get('title')
+        description = get_articles_response.get('description')
+        url = get_articles_response.get('url')
+        urlToImage = get_articles_response.get('urlToImage')
+        publishedAt= get_articles_response.get('publishedAt')
+
+        if urlToImage:
+            articles_object = Article(author,title,description,url,urlToImage,publishedAt)
+            articles_results.append(articles_object)
+
+
+    return articles_object
