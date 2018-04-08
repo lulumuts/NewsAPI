@@ -19,15 +19,19 @@ def news(news_id):
     '''
     View news page function that returns news details page and its data
     '''
-    return render_template('news.html')
+    # return render_template('news.html')
 
 @app.route('/article/<int:id>')
 def article(id):
     '''
     View articles page function for all the articles for specific source
     '''
+    articles_sources = get_articles('article')
 
-    article= get_articles(id)
+
+    articles = get_articles(id)
     title = f'{article.title}'
+    # reviews = Review.get_reviews(movie.id)
 
-    return render_template('news.html', title=title, article = article)
+
+    return render_template('news.html', title=title,status = status_sources, articles = articles_sources)

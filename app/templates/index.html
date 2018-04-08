@@ -15,18 +15,20 @@
 
 
   <!-- Content block -->
-  {%block content %}
+  {% block content %}
     <!-- Popular movie section -->
+    <div class="container">
     <h3> All Sources</h3>
 
     <p>
       {% for status_sources in status %}
-      {{status_sources.name}}
+      <a href="{{status_sources.url}}">{{status_sources.name}}</a>
       <ul>
         <li>{{status_sources.description}}</li>
-        <li>{{status_sources.url}}</li>
+
       </ul>
       {% endfor %}
 
     </p>
+  </div>
   {% endblock %}

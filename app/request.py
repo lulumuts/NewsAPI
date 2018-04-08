@@ -1,7 +1,7 @@
 from app import app
 import urllib.request, json
 from newsapi import NewsApiClient
-from .models import news
+from .models import news, articles
 
 News=news.News
 
@@ -60,12 +60,13 @@ def process_results(sources_list):
 
     return sources_results
 
-def get_articles(category):
+def get_articles(id):
     '''
     Function that gets the json response to our url request
     '''
 
-    get_articles_url= articles_base_url.format(category,api_key)
+    # get_articles_url= articles_base_url.format(category,api_key)
+    get_articles_url= articles_base_url + api_key
 
     with urllib.request.urlopen(get_articles_url) as url:
         get_articles_data = url.read()
@@ -77,7 +78,7 @@ def get_articles(category):
             articles_results_list = get_articles_response['articles']
             articles_results = process_articles(articles_results_list)
 
-        return articles_results
+    return articles_results
 
 def process_articles(articles_list):
     '''
