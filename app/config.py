@@ -4,6 +4,8 @@ class Config:
     '''
     NEWS_API_BASE_URL = 'https://newsapi.org/v2/sources?apiKey='
 
+    ARTICLES_API_BASE_URL='https://newsapi.org/v2/everything?q=sources&apiKey='
+
 class ProdConfig(Config):
     '''
     Production configuration child class

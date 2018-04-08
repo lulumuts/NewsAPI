@@ -11,6 +11,9 @@ api_key = app.config['NEWS_API_KEY']
 #Getting the movie base url
 base_url = app.config['NEWS_API_BASE_URL']
 
+#Getting the articles base url
+articles_base_url = app.config ['ARTICLES_API_BASE_URL']
+
 
 
 def get_sources(category):
@@ -56,3 +59,23 @@ def process_results(sources_list):
             sources_results.append(sources_object)
 
     return sources_results
+
+def get_articles(id):
+    get_articles_url= articles_base_url + api_key
+
+    with urllib.request.urlopen(get_articles_url) as url:
+        get_articles_data = url.read()
+        get_articles_response = json.loads(get_articles_data)
+
+        articles_object = None
+        if get_articles_response:
+            author = get_articles_response.get('author')
+            title = get_articles_response.get('title')
+            description = get_articles_response.get('description')
+            url = get_articles_response.get('url')
+            urlToImage = get_articles_response.get('urlToImage')
+            publishedAt= get_articles_response.get('publishedAt')
+
+            articles_object = Articles(author,title,description,url,urlToImage,publishedAt)
+
+        return articles_object
