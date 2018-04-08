@@ -1,1 +1,22 @@
-<h1> Hello News!</h1>
+{% extends 'base.html' %}
+
+<!-- Content block -->
+{% block content %}
+<div class="container">
+
+  <!-- Poster background -->
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-lg-6 urlToImage" style="background: url({{article.urlToImage}}) no-repeat center center">
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-lg-6 source-articles">
+      <h3>{{ article.title }}</h3>
+
+      <p class="description"> {{ article.description }}</p>
+      <p class="publication"> {{ article.publishedAt }}</p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

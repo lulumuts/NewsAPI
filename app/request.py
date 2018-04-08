@@ -76,6 +76,6 @@ def get_articles(id):
             urlToImage = get_articles_response.get('urlToImage')
             publishedAt= get_articles_response.get('publishedAt')
 
-            articles_object = Articles(author,title,description,url,urlToImage,publishedAt)
+            articles_object = Article(author,title,description,url,urlToImage,publishedAt)
 
         return articles_object

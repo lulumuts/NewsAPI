@@ -1,6 +1,6 @@
 from flask import render_template
 from app import app
-from .request import get_sources
+from .request import get_sources,get_articles
 
 #Views
 @app.route('/')
@@ -10,7 +10,7 @@ def index():
     '''
 
     status_sources = get_sources('status')
-    
+
     title='Home - Get the most up to date news on News One'
     return render_template('index.html', title = title, status = status_sources)
 
@@ -20,3 +20,14 @@ def news(news_id):
     View news page function that returns news details page and its data
     '''
     return render_template('news.html')
+
+@app.route('/article/<int:id>')
+def article(id):
+    '''
+    View articles page function for all the articles for specific source
+    '''
+
+    article= get_articles(id)
+    title = f'{article.title}'
+
+    return render_template('news.html', title=title, article = article)
