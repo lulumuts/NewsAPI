@@ -1,9 +1,11 @@
-from flask import render_template
-from app import app
-from .request import get_sources,get_articles
+from flask import render_template,request,redirect
+from . import main
+# from app import app
+from ..request import get_sources,get_articles
+from ..models import News, Articles
 
 #Views
-@app.route('/')
+@main.route('/')
 def index():
     '''
     View root page function that returns the index page and its data
@@ -14,14 +16,14 @@ def index():
     title='Home - Get the most up to date news on News One'
     return render_template('index.html', title = title, status = status_sources)
 
-@app.route('/news/<news_id>')
+@main.route('/news/<news_id>')
 def news(news_id):
     '''
     View news page function that returns news details page and its data
     '''
     # return render_template('news.html')
 
-@app.route('/article/<int:id>')
+@main.route('/article/<int:id>')
 def article(id):
     '''
     View articles page function for all the articles for specific source
