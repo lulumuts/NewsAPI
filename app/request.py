@@ -1,9 +1,9 @@
-from app import app
+# from app import app
 import urllib.request, json
 from newsapi import NewsApiClient
-from .models import News, Articles
+from .models import News, Article
 
-News=news.News
+# News=news.News
 
 #Getting api key
 api_key = None
@@ -18,17 +18,22 @@ articles_base_url = None
 # articles_base_url = app.config ['ARTICLES_API_BASE_URL']
 
 def configure_request(app):
-    global api_key,base_url
+    global api_key,base_url,articles_base_url
     api_key = app.config['NEWS_API_KEY']
     base_url = app.config['NEWS_API_BASE_URL']
     articles_base_url = app.config ['ARTICLES_API_BASE_URL']
+
+
 
 def get_sources(category):
     '''
     Function that gets the json response to our url request
     '''
 
-    get_sources_url = base_url + api_key
+    get_sources_url = base_url.format(api_key)
+    print(get_sources_url)
+
+
 
     with urllib.request.urlopen(get_sources_url) as url:
         get_sources_data = url.read()
@@ -73,7 +78,8 @@ def get_articles(id):
     '''
 
     # get_articles_url= articles_base_url.format(category,api_key)
-    get_articles_url= articles_base_url + api_key
+    get_articles_url= articles_base_url.format(id,api_key)
+    print(get_articles_url)
 
     with urllib.request.urlopen(get_articles_url) as url:
         get_articles_data = url.read()
